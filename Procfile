@@ -1,0 +1,1 @@
+web: java -jar out/artifacts/dominion_backend_jar/dominion_backend.jar
