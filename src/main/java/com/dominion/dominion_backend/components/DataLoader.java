@@ -37,8 +37,8 @@ public class DataLoader implements ApplicationRunner {
 //        Player player2 = new Player("Bo");
 //        playerRepository.save(player2);
 //
-        Season season1 = new Season(1);
-        seasonRepository.save(season1);
+//        Season season1 = new Season(1);
+//        seasonRepository.save(season1);
 //
 //        List<Season> seasons = new ArrayList<>();
 //        seasons.add(season1);
