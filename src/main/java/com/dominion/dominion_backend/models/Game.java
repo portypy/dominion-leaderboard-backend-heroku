@@ -29,7 +29,7 @@ public class Game {
     )
     private List<Player> players;
 
-    @JsonIgnoreProperties(value = {"season", "games", "seasons", "players"})
+    @JsonIgnoreProperties(value = {"season", "games", "seasons", "players"}, allowSetters=true)
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "season_id", nullable = false)

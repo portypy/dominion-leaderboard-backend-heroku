@@ -30,7 +30,6 @@ public class PlayerControllerTest implements IAsJsonString {
     public void shouldGetAllPlayers() throws Exception {
 
         Player player = new Player("Prince");
-
         playerRepository.save(player);
 
         this.mockMvc.perform(get("/players")
@@ -42,11 +41,16 @@ public class PlayerControllerTest implements IAsJsonString {
 
     @Test
     public void shouldGetPlayerById() throws Exception {
-        this.mockMvc.perform(get("/players/{id}", 1)
+
+        Player player = new Player("Prince");
+        playerRepository.save(player);
+        Long playerToGetId = player.getId();
+
+        this.mockMvc.perform(get("/players/{id}", playerToGetId)
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(playerToGetId));
     }
 
     @Test
@@ -67,14 +71,16 @@ public class PlayerControllerTest implements IAsJsonString {
     public void shouldUpdatePlayer() throws Exception {
 
         Player player = new Player("Duke");
+        playerRepository.save(player);
         player.setSeasonPoints(21);
         player.setSeasonGames(7);
         player.setSeasonAvPosition(2.12);
         player.setTotalPoints(42);
         player.setTotalGames(27);
         player.setTotalAvPosition(2.32);
+        Long playerToUpdateId = player.getId();
 
-        this.mockMvc.perform(put("/players/{id}", 1)
+        this.mockMvc.perform(put("/players/{id}", playerToUpdateId)
                 .content(IAsJsonString.asJsonString(player))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
@@ -90,7 +96,12 @@ public class PlayerControllerTest implements IAsJsonString {
 
     @Test
     public void shouldDeletePlayer() throws Exception {
-        this.mockMvc.perform(delete("/players/{id}", 1))
+
+        Player player = new Player("Duke");
+        playerRepository.save(player);
+        Long playerToBeDeletedId = player.getId();
+
+        this.mockMvc.perform(delete("/players/{id}", playerToBeDeletedId))
                 .andExpect(status().isAccepted());
     }
 

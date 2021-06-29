@@ -2,6 +2,7 @@ package com.dominion.dominion_backend.controllers;
 
 import com.dominion.dominion_backend.models.Game;
 import com.dominion.dominion_backend.models.Season;
+import com.dominion.dominion_backend.repositories.GameRepository;
 import com.dominion.dominion_backend.repositories.SeasonRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class GameControllerTest implements IAsJsonString{
     @Autowired
     SeasonRepository seasonRepository;
 
+    @Autowired
+    GameRepository gameRepository;
+
     @Test
     public void shouldGetAllGames() throws Exception {
 
@@ -38,17 +42,23 @@ public class GameControllerTest implements IAsJsonString{
     @Test
     public void shouldGetGameById() throws Exception {
 
-        this.mockMvc.perform(get("/games/{id}", 1)
+        Season season = new Season(1);
+        seasonRepository.save(season);
+        Game game = new Game(23, season);
+        gameRepository.save(game);
+        Long gameToGetId = game.getId();
+
+        this.mockMvc.perform(get("/games/{id}", gameToGetId)
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(gameToGetId));
     }
 
     @Test
     public void shouldPostGame() throws Exception {
 
-        Season season = new Season(1);
+        Season season = new Season(2);
         seasonRepository.save(season);
         Game game = new Game(99, season);
 
@@ -67,8 +77,11 @@ public class GameControllerTest implements IAsJsonString{
         Season season = new Season(1);
         seasonRepository.save(season);
         Game game = new Game(1, season);
+        gameRepository.save(game);
+        Long gameToUpdateId = game.getId();
 
-        this.mockMvc.perform(put("/games/{id}", 1)
+
+        this.mockMvc.perform(put("/games/{id}", gameToUpdateId)
                 .content(IAsJsonString.asJsonString(game))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
@@ -79,8 +92,15 @@ public class GameControllerTest implements IAsJsonString{
     }
 
     @Test
-    public void shouldDeletePlayer() throws Exception {
-        this.mockMvc.perform(delete("/games/{id}", 1))
+    public void shouldDeleteGame() throws Exception {
+
+        Season season = new Season(9);
+        seasonRepository.save(season);
+        Game game = new Game(1, season);
+        gameRepository.save(game);
+        Long gameToUpdateId = game.getId();
+
+        this.mockMvc.perform(delete("/games/{id}", gameToUpdateId))
                 .andExpect(status().isAccepted());
 
     }

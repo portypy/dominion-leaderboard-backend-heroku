@@ -18,7 +18,7 @@ public class Season {
     @Column(name = "completed")
     private boolean completed;
 
-    @JsonIgnoreProperties(value = {"season", "players", "games", "seasons"})
+    @JsonIgnoreProperties(value = {"season", "players", "games", "seasons"}, allowSetters=true)
     @OneToMany(mappedBy = "season", fetch = FetchType.LAZY)
     private List<Game> games;
 

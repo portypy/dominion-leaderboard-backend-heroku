@@ -93,8 +93,9 @@ public class SeasonControllerTest implements IAsJsonString {
         season.setPlayers(playersUpdatedList);
         season.setGames(gamesUpdatedList);
         season.setCompleted(true);
+        Long seasonToUpdateId = season.getId();
 
-        this.mockMvc.perform(put("/seasons/{id}", 1)
+        this.mockMvc.perform(put("/seasons/{id}", seasonToUpdateId)
                 .content(IAsJsonString.asJsonString(season))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
