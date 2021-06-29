@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -13,10 +14,14 @@ public class GameTest {
     Season season1;
     Season season2;
     ArrayList<Player> players;
+    HashMap<Player, Integer> results;
+    HashMap<Player, Integer> positions;
 
     @BeforeEach
     void setUp() {
-        players = new ArrayList<Player>();
+        players = new ArrayList<>();
+        results = new HashMap<>();
+        positions = new HashMap<>();
         season1 = new Season(1);
         season2 = new Season(2);
         game = new Game(2, season1);
@@ -39,6 +44,24 @@ public class GameTest {
         players.add(player);
         game.setPlayers(players);
         assertEquals(1, game.getPlayers().size());
+    }
+
+    @Test
+    void setResults() {
+        results.put(player, 1);
+        game.setResults(results);
+        assertEquals(1, game.getResults().size());
+        assertEquals(true, game.getResults().containsKey(player));
+        assertEquals(true, game.getResults().containsValue(1));
+    }
+
+    @Test
+    void setPositions() {
+        positions.put(player, 57);
+        game.setPositions(positions);
+        assertEquals(1, game.getPositions().size());
+        assertEquals(true, game.getPositions().containsKey(player));
+        assertEquals(true, game.getPositions().containsValue(57));
     }
 
 

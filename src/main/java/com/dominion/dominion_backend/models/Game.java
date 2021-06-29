@@ -7,7 +7,9 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @Table(name = "games")
@@ -33,10 +35,18 @@ public class Game {
     @JoinColumn(name = "season_id", nullable = false)
     private Season season;
 
+    @Column
+    private HashMap<Player, Integer> results;   // to store the number of points by each player
+
+    @Column
+    private HashMap<Player, Integer> positions; // to store the position of each player(in case of a draw can't be worked out automatically because of the game logic)
+
     public Game(int gameNumber, Season season) {
         this.gameNumber = gameNumber;
         this.season = season;
         this.players = new ArrayList<>();
+        this.results = new HashMap<>();
+        this.positions = new HashMap<>();
     }
 
     public Game() {
@@ -74,4 +84,21 @@ public class Game {
     public void setSeason(Season season) {
         this.season = season;
     }
+
+    public HashMap<Player, Integer> getResults() {
+        return results;
+    }
+
+    public void setResults(HashMap<Player, Integer> results) {
+        this.results = results;
+    }
+
+    public HashMap<Player, Integer> getPositions() {
+        return positions;
+    }
+
+    public void setPositions(HashMap<Player, Integer> positions) {
+        this.positions = positions;
+    }
 }
+
