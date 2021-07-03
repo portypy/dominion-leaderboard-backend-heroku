@@ -20,7 +20,7 @@ public class Game {
     @Column(name = "game_number")
     private int gameNumber;
 
-    @JsonIgnoreProperties(value = {"games", "players", "season", "seasons"})
+    @JsonIgnoreProperties(value = {"games", "season", "seasons"})
     @ManyToMany
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
@@ -29,7 +29,7 @@ public class Game {
     )
     private List<Player> players;
 
-    @JsonIgnoreProperties(value = {"season", "games", "seasons", "players"}, allowSetters=true)
+    @JsonIgnoreProperties(value = {"season", "games", "seasons"}, allowSetters=true)
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "season_id", nullable = false)
