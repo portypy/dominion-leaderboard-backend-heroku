@@ -55,11 +55,16 @@ public class SeasonControllerTest implements IAsJsonString {
 
     @Test
     public void shouldGetSeasonById() throws Exception {
-        this.mockMvc.perform(get("/seasons/{id}", 1)
+
+        Season season = new Season(67);
+        seasonRepository.save(season);
+        Long seasonToGetId = season.getId();
+
+        this.mockMvc.perform(get("/seasons/{id}", seasonToGetId)
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(seasonToGetId));
     }
 
     @Test
