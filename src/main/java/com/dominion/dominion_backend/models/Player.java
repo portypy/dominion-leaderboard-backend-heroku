@@ -60,7 +60,7 @@ public class Player {
         this.totalPoints = 0;
         this.totalGames = 0;
         this.totalAvPosition = 0;
-        this.gamePoints = 0;
+        this.gamePoints = gamePoints;
         this.seasons = new ArrayList<>();
         this.games = new ArrayList<>();
     }
