@@ -69,6 +69,12 @@ public class PlayerTest {
     }
 
     @Test
+    void setGamePoints() {
+        player.setGamePoints(44);
+        assertEquals(44, player.getGamePoints());
+    }
+
+    @Test
     void setSeasons() {
         seasons.add(season);
         player.setSeasons(seasons);

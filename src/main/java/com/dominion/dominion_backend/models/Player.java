@@ -28,6 +28,8 @@ public class Player {
     private int totalGames;
     @Column(name = "total_av_position")
     private double totalAvPosition;
+    @Column(name = "game_points")
+    private int gamePoints;
 
     @JsonIgnoreProperties(value = {"players", "seasons"})
     @ManyToMany
@@ -58,6 +60,7 @@ public class Player {
         this.totalPoints = 0;
         this.totalGames = 0;
         this.totalAvPosition = 0;
+        this.gamePoints = 0;
         this.seasons = new ArrayList<>();
         this.games = new ArrayList<>();
     }
@@ -128,6 +131,14 @@ public class Player {
 
     public void setTotalAvPosition(double totalAvPosition) {
         this.totalAvPosition = totalAvPosition;
+    }
+
+    public int getGamePoints() {
+        return gamePoints;
+    }
+
+    public void setGamePoints(int gamePoints) {
+        this.gamePoints = gamePoints;
     }
 
     public List<Season> getSeasons() {
