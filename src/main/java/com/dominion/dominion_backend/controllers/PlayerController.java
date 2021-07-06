@@ -44,6 +44,7 @@ public class PlayerController {
         playerToUpdate.setTotalPoints(player.getTotalPoints());
         playerToUpdate.setTotalAvPosition(player.getTotalAvPosition());
         playerToUpdate.setGamePoints(player.getGamePoints());
+        playerToUpdate.setGamePosition(player.getGamePosition());
         playerToUpdate.setGames(player.getGames());
         playerToUpdate.setSeasons(player.getSeasons());
 

@@ -144,6 +144,14 @@ public class Player {
         this.gamePoints = gamePoints;
     }
 
+    public int getGamePosition() {
+        return gamePosition;
+    }
+
+    public void setGamePosition(int gamePosition) {
+        this.gamePosition = gamePosition;
+    }
+
     public List<Season> getSeasons() {
         return seasons;
     }
