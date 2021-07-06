@@ -30,6 +30,8 @@ public class Player {
     private double totalAvPosition;
     @Column(name = "game_points")
     private int gamePoints;
+    @Column(name = "game_position")
+    private int gamePosition;
 
     @JsonIgnoreProperties(value = {"players", "seasons"})
     @ManyToMany
@@ -54,13 +56,14 @@ public class Player {
 
     public Player(String name){
         this.name = name;
-        this.seasonPoints = 0;
-        this.seasonGames = 0;
-        this.seasonAvPosition = 0;
-        this.totalPoints = 0;
-        this.totalGames = 0;
-        this.totalAvPosition = 0;
-        this.gamePoints = gamePoints;
+        this.seasonPoints = seasonPoints;
+        this.seasonGames = seasonGames;
+        this.seasonAvPosition = seasonAvPosition;
+        this.totalPoints = totalPoints;
+        this.totalGames = totalGames;
+        this.totalAvPosition = totalAvPosition;
+        this.gamePoints = 0;
+        this.gamePosition = 0;
         this.seasons = new ArrayList<>();
         this.games = new ArrayList<>();
     }
