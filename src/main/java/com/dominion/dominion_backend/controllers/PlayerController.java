@@ -45,8 +45,6 @@ public class PlayerController {
         playerToUpdate.setTotalAvPosition(player.getTotalAvPosition());
         playerToUpdate.setGamePoints(player.getGamePoints());
         playerToUpdate.setGamePosition(player.getGamePosition());
-        playerToUpdate.setGames(player.getGames());
-        playerToUpdate.setSeasons(player.getSeasons());
 
         playerRepository.save(playerToUpdate);
         return new ResponseEntity<>(playerToUpdate, HttpStatus.OK);

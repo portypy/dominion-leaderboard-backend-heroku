@@ -9,7 +9,6 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Entity
 @Table(name = "games")
@@ -20,7 +19,6 @@ public class Game {
     @Column(name = "game_number")
     private int gameNumber;
 
-    @JsonIgnoreProperties(value = {"games", "season", "seasons"})
     @ManyToMany
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
@@ -29,7 +27,7 @@ public class Game {
     )
     private List<Player> players;
 
-    @JsonIgnoreProperties(value = {"season", "games", "seasons"}, allowSetters=true)
+    @JsonIgnoreProperties(value = "games", allowSetters=true)
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "season_id", nullable = false)

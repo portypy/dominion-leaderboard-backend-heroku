@@ -12,16 +12,12 @@ public class PlayerTest {
     Player player;
     Game game;
     Season season;
-    ArrayList<Season> seasons;
-    ArrayList<Game> games;
 
     @BeforeEach
     void setUp() {
         player = new Player("Wielki Shu");
         season = new Season(2);
         game = new Game(2, season);
-        seasons = new ArrayList<Season>();
-        games = new ArrayList<Game>();
     }
 
     @Test
@@ -74,17 +70,4 @@ public class PlayerTest {
         assertEquals(44, player.getGamePoints());
     }
 
-    @Test
-    void setSeasons() {
-        seasons.add(season);
-        player.setSeasons(seasons);
-        assertEquals(1, player.getSeasons().size());
-    }
-
-    @Test
-    void  setGames() {
-        games.add(game);
-        player.setGames(games);
-        assertEquals(1, player.getGames().size());
-    }
 }

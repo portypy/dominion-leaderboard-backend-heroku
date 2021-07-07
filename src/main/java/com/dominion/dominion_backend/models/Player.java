@@ -1,12 +1,6 @@
 package com.dominion.dominion_backend.models;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.hibernate.annotations.Cascade;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "players")
@@ -33,26 +27,6 @@ public class Player {
     @Column(name = "game_position")
     private int gamePosition;
 
-    @JsonIgnoreProperties(value = {"players", "seasons"})
-    @ManyToMany
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @JoinTable(
-            name = "seasons_players",
-            joinColumns = {@JoinColumn(name = "player_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "season_id", nullable = false, updatable = false)}
-    )
-    private List<Season> seasons;
-
-    @JsonIgnoreProperties(value = {"players", "games"})
-    @ManyToMany
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @JoinTable(
-            name = "games_players",
-            joinColumns = {@JoinColumn(name = "player_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "game_id", nullable = false, updatable = false)}
-    )
-    private List<Game> games;
-
 
     public Player(String name){
         this.name = name;
@@ -64,8 +38,6 @@ public class Player {
         this.totalAvPosition = totalAvPosition;
         this.gamePoints = 0;
         this.gamePosition = 0;
-        this.seasons = new ArrayList<>();
-        this.games = new ArrayList<>();
     }
 
     public Player(){
@@ -151,22 +123,4 @@ public class Player {
     public void setGamePosition(int gamePosition) {
         this.gamePosition = gamePosition;
     }
-
-    public List<Season> getSeasons() {
-        return seasons;
-    }
-
-    public void setSeasons(List<Season> seasons) {
-        this.seasons = seasons;
-    }
-
-    public List<Game> getGames() {
-        return games;
-    }
-
-    public void setGames(List<Game> games) {
-        this.games = games;
-    }
-
-
 }
