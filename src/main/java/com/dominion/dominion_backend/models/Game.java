@@ -38,7 +38,7 @@ public class Game {
     @JoinTable(name = "players_results_mapping",
             joinColumns = {@JoinColumn(name = "player_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "result_id", referencedColumnName = "id")})
-    private Map<Player, Integer> results;   // to store the number of points by each player
+    private Map<Integer, Integer> results;   // to store the number of points by each player
 
     @OneToMany( targetEntity = Player.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "players_positions_mapping",
@@ -90,11 +90,11 @@ public class Game {
         this.season = season;
     }
 
-    public Map<Player, Integer> getResults() {
+    public Map<Integer, Integer> getResults() {
         return results;
     }
 
-    public void setResults(Map<Player, Integer> results) {
+    public void setResults(Map<Integer, Integer> results) {
         this.results = results;
     }
 

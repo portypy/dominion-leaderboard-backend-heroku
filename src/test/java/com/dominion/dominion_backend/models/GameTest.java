@@ -46,14 +46,14 @@ public class GameTest {
         assertEquals(1, game.getPlayers().size());
     }
 
-    @Test
-    void setResults() {
-        results.put(player, 1);
-        game.setResults(results);
-        assertEquals(1, game.getResults().size());
-        assertEquals(true, game.getResults().containsKey(player));
-        assertEquals(true, game.getResults().containsValue(1));
-    }
+//    @Test
+//    void setResults() {
+//        results.put(player, 1);
+//        game.setResults(results);
+//        assertEquals(1, game.getResults().size());
+//        assertEquals(true, game.getResults().containsKey(player));
+//        assertEquals(true, game.getResults().containsValue(1));
+//    }
 
     @Test
     void setPositions() {
