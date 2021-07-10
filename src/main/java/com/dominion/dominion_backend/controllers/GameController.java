@@ -40,6 +40,8 @@ public class GameController {
         gameToUpdate.setGameNumber(game.getGameNumber());
         gameToUpdate.setSeason(game.getSeason());
         gameToUpdate.setPlayers(game.getPlayers());
+        gameToUpdate.setResults(game.getResults());
+        gameToUpdate.setPositions(game.getPositions());
 
         gameRepository.save(gameToUpdate);
         return new ResponseEntity<>(gameToUpdate, HttpStatus.OK);

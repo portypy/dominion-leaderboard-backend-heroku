@@ -37,7 +37,7 @@ public class Game {
     private HashMap<Player, Integer> results;   // to store the number of points by each player
 
     @Column
-    private HashMap<Player, Integer> positions; // to store the position of each player(in case of a draw can't be worked out automatically because of the game logic)
+    private HashMap<Player, Integer> positions; // to store the position of each player(in case of a draw it can't be worked out automatically because of the game logic)
 
     public Game(int gameNumber, Season season) {
         this.gameNumber = gameNumber;
