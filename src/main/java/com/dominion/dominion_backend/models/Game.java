@@ -34,10 +34,8 @@ public class Game {
     @JoinColumn(name = "season_id", nullable = false)
     private Season season;
 
-    @OneToMany( targetEntity = Player.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "players_results_mapping",
-            joinColumns = {@JoinColumn(name = "player_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "result_id", referencedColumnName = "id")})
+    @ElementCollection
+    @Column (name="results")
     private Map<Integer, Integer> results;   // to store the number of points by each player
 
     @OneToMany( targetEntity = Player.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
