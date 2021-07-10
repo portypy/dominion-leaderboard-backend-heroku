@@ -34,12 +34,16 @@ public class Game {
     @JoinColumn(name = "season_id", nullable = false)
     private Season season;
 
-    @ElementCollection
-    @Column (name="results")
+    @OneToMany( targetEntity = Player.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "players_results_mapping",
+            joinColumns = {@JoinColumn(name = "player_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "result_id", referencedColumnName = "id")})
     private Map<Player, Integer> results;   // to store the number of points by each player
 
-    @ElementCollection
-    @Column (name="positions")
+    @OneToMany( targetEntity = Player.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "players_positions_mapping",
+            joinColumns = {@JoinColumn(name = "player_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "position_id", referencedColumnName = "id")})
     private Map<Player, Integer> positions; // to store the position of each player(in case of a draw it can't be worked out automatically because of the game logic)
 
     public Game(int gameNumber, Season season) {
