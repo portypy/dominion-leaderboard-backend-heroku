@@ -38,11 +38,9 @@ public class Game {
     @Column (name="results")
     private Map<Integer, Integer> results;   // to store the number of points by each player
 
-    @OneToMany( targetEntity = Player.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "players_positions_mapping",
-            joinColumns = {@JoinColumn(name = "player_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "position_id", referencedColumnName = "id")})
-    private Map<Player, Integer> positions; // to store the position of each player(in case of a draw it can't be worked out automatically because of the game logic)
+    @ElementCollection
+    @Column (name="results")
+    private Map<Integer, Integer> positions; // to store the position of each player(in case of a draw it can't be worked out automatically because of the game logic)
 
     public Game(int gameNumber, Season season) {
         this.gameNumber = gameNumber;
@@ -96,11 +94,11 @@ public class Game {
         this.results = results;
     }
 
-    public Map<Player, Integer> getPositions() {
+    public Map<Integer, Integer> getPositions() {
         return positions;
     }
 
-    public void setPositions(Map<Player, Integer> positions) {
+    public void setPositions(Map<Integer, Integer> positions) {
         this.positions = positions;
     }
 }

@@ -14,8 +14,8 @@ public class GameTest {
     Season season1;
     Season season2;
     ArrayList<Player> players;
-    HashMap<Player, Integer> results;
-    HashMap<Player, Integer> positions;
+    HashMap<Integer, Integer> results;
+    HashMap<Integer, Integer> positions;
 
     @BeforeEach
     void setUp() {
@@ -46,21 +46,21 @@ public class GameTest {
         assertEquals(1, game.getPlayers().size());
     }
 
-//    @Test
-//    void setResults() {
-//        results.put(player, 1);
-//        game.setResults(results);
-//        assertEquals(1, game.getResults().size());
-//        assertEquals(true, game.getResults().containsKey(player));
-//        assertEquals(true, game.getResults().containsValue(1));
-//    }
+    @Test
+    void setResults() {
+        results.put(3, 1);
+        game.setResults(results);
+        assertEquals(1, game.getResults().size());
+        assertEquals(true, game.getResults().containsKey(3));
+        assertEquals(true, game.getResults().containsValue(1));
+    }
 
     @Test
     void setPositions() {
-        positions.put(player, 57);
+        positions.put(2, 57);
         game.setPositions(positions);
         assertEquals(1, game.getPositions().size());
-        assertEquals(true, game.getPositions().containsKey(player));
+        assertEquals(true, game.getPositions().containsKey(2));
         assertEquals(true, game.getPositions().containsValue(57));
     }
 
